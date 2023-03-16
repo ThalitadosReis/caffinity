@@ -10,9 +10,11 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    img: {
+    image: {
       type: String,
-      required: true,
+      default:
+        "https://res.cloudinary.com/douen1dwv/image/upload/v1678995096/default/photo-1609475349547-644d546313f6_wzr1du.jpg",
+      trim: true,
     },
     price: {
       type: Number,

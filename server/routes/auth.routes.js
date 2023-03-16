@@ -16,13 +16,13 @@ const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 // How many rounds should bcrypt run the salt (default - 10 rounds)
 const saltRounds = 10;
 
-// POST /auth/signup  - Creates a new user in the database
-router.post("/signup", (req, res, next) => {
-  const { email, password, name } = req.body;
+// POST /auth/register  - Creates a new user in the database
+router.post("/register", (req, res, next) => {
+  const { email, password, username } = req.body;
 
   // Check if email or password or name are provided as empty strings
-  if (email === "" || password === "" || name === "") {
-    res.status(400).json({ message: "Provide email, password and name" });
+  if (email === "" || password === "" || username === "") {
+    res.status(400).json({ message: "Provide email, password and username" });
     return;
   }
 
@@ -58,7 +58,7 @@ router.post("/signup", (req, res, next) => {
 
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, name });
+      return User.create({ email, password: hashedPassword, username });
     })
     .then((createdUser) => {
       // Deconstruct the newly created user object to omit the password
