@@ -82,7 +82,10 @@ router.get("/find/:userId", isAuthenticatedOrAdmin, (req, res, next) => {
 
   Cart.findById(userId)
     .then((carts) => res.status(200).json(carts))
-    .catch((error) => res.json(error));
+    .catch((error) => {
+      console.log("Error getting the user's cart", error);
+      res.json(error);
+    });
 });
 
 // GET: All carts
@@ -93,6 +96,7 @@ router.get("/", isAuthenticatedAndAdmin, (req, res) => {
       carts;
     })
     .catch((err) => {
+      console.log("Error getting all carts", error);
       res.status(500).json(err);
     });
 });
