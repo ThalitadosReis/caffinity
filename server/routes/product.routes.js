@@ -1,12 +1,11 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
 const Product = require("../models/Product.model");
-const User = require("../models/User.model");
-const { isAuthenticated } = require("../middleware/jwt.middleware");
+const { isAuthenticatedAndAdmin } = require("../middleware/jwt.middleware");
 const fileUploader = require("../config/cloudinary.config");
 
 // POST: Creating a new product
-router.post("/products", isAuthenticated, (req, res) => {
+router.post("/", isAuthenticatedAndAdmin, (req, res) => {
   const {
     title,
     description,
@@ -51,16 +50,16 @@ router.post("/upload", fileUploader.single("image"), (req, res, next) => {
 });
 
 // PUT: Updating a specific product by it's id
-router.put("/products/:productId", isAuthenticated, (req, res) => {
-  const { productId } = req.params;
+router.put("/:id", isAuthenticatedAndAdmin, (req, res) => {
+  const { id } = req.params;
 
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
 
   Product.findOneAndUpdate(
-    productId,
+    id,
     {
       $set: req.body,
     },
@@ -77,13 +76,15 @@ router.put("/products/:productId", isAuthenticated, (req, res) => {
 });
 
 // DELETE: Deleting a specific product by it's id
-router.delete("/products/:productId", isAuthenticated, (req, res) => {
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
+router.delete("/:id", isAuthenticatedAndAdmin, (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
 
-  Product.findOneAndDelete(req.params.productId)
+  Product.findOneAndDelete(id)
     .then((response) => {
       console.log("Product deleted:", response.title);
       res.status(200).json(response);
@@ -95,19 +96,21 @@ router.delete("/products/:productId", isAuthenticated, (req, res) => {
 });
 
 // GET: Displaying details of a specific product
-router.get("/products/:productId", (req, res, next) => {
-  if (!mongoose.Types.ObjectId.isValid(productId)) {
+router.get("/find/:id", (req, res, next) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     res.status(400).json({ message: "Specified id is not valid" });
     return;
   }
 
-  Product.findById(req.params.productId)
+  Product.findById(id)
     .then((product) => res.status(200).json(product))
     .catch((error) => res.json(error));
 });
 
 // GET: Display list of products
-router.get("/products", (req, res) => {
+router.get("/", (req, res) => {
   const qNew = req.query.new;
   const qCategory = req.query.category;
   let products;

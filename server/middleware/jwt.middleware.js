@@ -8,6 +8,33 @@ const isAuthenticated = jwt({
   getToken: getTokenFromHeaders,
 });
 
+// Middleware to check if user is authenticated AND is an admin
+const isAuthenticatedAndAdmin = (req, res, next) => {
+  isAuthenticated(req, res, () => {
+    // Check if user is an admin
+    if (req.payload.isAdmin) {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "You are not authorized to access this resource" });
+    }
+  });
+};
+
+// Middleware to check if user is authenticated or is an admin
+const isAuthenticatedOrAdmin = (req, res, next) => {
+  isAuthenticated(req, res, () => {
+    if (req.payload.isAdmin || req.payload.userId === req.params.id) {
+      next();
+    } else {
+      res
+        .status(403)
+        .json({ error: "You are not authorized to access this resource" });
+    }
+  });
+};
+
 // Function used to extract the JWT token from the request's 'Authorization' Headers
 function getTokenFromHeaders(req) {
   // Check if the token is available on the request Headers
@@ -26,4 +53,6 @@ function getTokenFromHeaders(req) {
 // Export the middleware so that we can use it to create protected routes
 module.exports = {
   isAuthenticated,
+  isAuthenticatedAndAdmin,
+  isAuthenticatedOrAdmin,
 };
