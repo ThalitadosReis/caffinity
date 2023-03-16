@@ -1,34 +1,31 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-const Order = require("../models/Order.model");
+const Cart = require("../models/Cart.model");
 const {
   isAuthenticated,
   isAuthenticatedAndAdmin,
   isAuthenticatedOrAdmin,
 } = require("../middleware/jwt.middleware");
 
-// POST: Creating a new order
+// POST: New Cart
 router.post("/", isAuthenticated, (req, res) => {
-  const { userId, products, amount, address, status } = req.body;
+  const { userId, products } = req.body;
 
-  Order.create({
+  Cart.create({
     userId,
     products,
-    amount,
-    address,
-    status,
   })
     .then((response) => {
-      console.log("Order created:", response.title);
+      console.log("Cart created:", response.title);
       res.status(200).json(response);
     })
     .catch((error) => {
-      console.log("Error creating new order", error);
+      console.log("Error creating new cart", error);
       res.status(500).json(error);
     });
 });
 
-// PUT: Updating a specific order by it's id
+// PUT: Updating a specific cart by it's id
 router.put("/:id", isAuthenticatedAndAdmin, (req, res) => {
   const { id } = req.params;
 
@@ -37,7 +34,7 @@ router.put("/:id", isAuthenticatedAndAdmin, (req, res) => {
     return;
   }
 
-  Order.findOneAndUpdate(
+  Cart.findOneAndUpdate(
     id,
     {
       $set: req.body,
@@ -45,16 +42,16 @@ router.put("/:id", isAuthenticatedAndAdmin, (req, res) => {
     { new: true }
   )
     .then((response) => {
-      console.log("Order updated:", response.title);
+      console.log("Cart updated:", response.title);
       res.status(200).json(response);
     })
     .catch((error) => {
-      console.log("Error updating order information", error);
+      console.log("Error updating cart information", error);
       res.status(500).json(error);
     });
 });
 
-// DELETE: Deleting a specific order by it's id
+// DELETE: Deleting a specific cart by it's id
 router.delete("/:id", isAuthenticatedAndAdmin, (req, res) => {
   const { id } = req.params;
 
@@ -63,18 +60,18 @@ router.delete("/:id", isAuthenticatedAndAdmin, (req, res) => {
     return;
   }
 
-  Order.findOneAndDelete(id)
+  Cart.findOneAndDelete(id)
     .then((response) => {
-      console.log("Order deleted:", response.title);
+      console.log("Cart deleted:", response.title);
       res.status(200).json(response);
     })
     .catch((error) => {
-      console.log("Error deleting order", error);
+      console.log("Error deleting cart", error);
       res.status(500).json(error);
     });
 });
 
-// GET: User's order
+// GET: User's cart
 router.get("/find/:userId", isAuthenticatedOrAdmin, (req, res, next) => {
   const { userId } = req.params;
 
@@ -83,45 +80,17 @@ router.get("/find/:userId", isAuthenticatedOrAdmin, (req, res, next) => {
     return;
   }
 
-  Order.findById(userId)
-    .then((orders) => res.status(200).json(orders))
+  Cart.findById(userId)
+    .then((carts) => res.status(200).json(carts))
     .catch((error) => res.json(error));
 });
 
-// GET: All orders
+// GET: All carts
 router.get("/", isAuthenticatedAndAdmin, (req, res) => {
-  Order.find()
-    .then((orders) => {
-      res.status(200).json(orders);
-    })
-    .catch((err) => {
-      res.status(500).json(err);
-    });
-});
-
-// GET: Income Monthly
-router.get("/income", isAuthenticatedAndAdmin, (req, res) => {
-  const date = new Date();
-  const lastMonth = new Date(date.setMonth(date.getMonth() - 1));
-  const previousMonth = new Date(new Date().setMonth(lastMonth.getMonth() - 1));
-
-  Order.aggregate([
-    { $match: { createdAt: { $gte: previousMonth } } },
-    {
-      $project: {
-        month: { $month: "$createdAt" },
-        sales: "$amount",
-      },
-    },
-    {
-      $group: {
-        _id: "$month",
-        total: { $sum: "$sales" },
-      },
-    },
-  ])
-    .then((income) => {
-      res.status(200).json(income);
+  Cart.find()
+    .then((carts) => {
+      res.status(200).json(carts);
+      carts;
     })
     .catch((err) => {
       res.status(500).json(err);
