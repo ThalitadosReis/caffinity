@@ -1,64 +1,42 @@
-import React, { useState } from "react";
+import { Navbar, Nav, Container, Form } from "react-bootstrap";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import "./NavBar.css";
 
-export default function Navbar() {
-  const [searchValue, setSearchValue] = useState("");
-
-  const handleSearch = (event) => {
-    setSearchValue(event.target.value);
-    // Logic of the search box
-  };
-
+export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-md navbar-light bg-light px-4">
-      <a className="navbar-brand d-flex align-items-center" href="#">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/9896/9896631.png"
-          alt="logo"
-          width={30}
-        />
-        Caffinity
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <div className="navbar-search">
-          <input
-            className="form-control me-2Fgrow"
-            type="search"
-            placeholder="What are you looking for?"
-            aria-label="Search"
-            value={searchValue}
-            onChange={handleSearch}
+    <Navbar expand="md">
+      <Container>
+        <Navbar.Brand className="d-flex align-items-center" href="#">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/9896/9896631.png"
+            alt="logo"
           />
-        </div>
-        <div className="navbar-nav ms-auto">
-          <div className="nav-item">
-            <a className="nav-link " href="#">
+          Caffinity
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav">
+          <span className="navbar-toggler-icon"></span>
+        </Navbar.Toggle>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Form.Control
+            type="text"
+            placeholder="What are you looking for?"
+            style={{
+              boxShadow: "none",
+            }}
+          />
+          <Nav className="ms-auto d-flex align-items-center">
+            <Nav.Link href="#">
               <AiOutlineShoppingCart size={25} />
-            </a>
-          </div>
-          <div className="nav-item mx-2">
-            <a className="nav-link" href="#">
+            </Nav.Link>
+            <Nav.Link className=" px-3" href="#">
               Login
-            </a>
-          </div>
-          <div className="nav-item">
-            <a className="nav-link border border-dark rounded" href="#">
+            </Nav.Link>
+            <Nav.Link className=" button" href="#">
               Register
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 }

@@ -1,10 +1,10 @@
-import Navbar from "./components/Navbar";
+import NavBar from "./components/NavBar";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <NavBar />
       {/* <h1>Caffinity</h1> */}
     </div>
   );
