@@ -39,7 +39,8 @@ ul {
   padding: 0;
   line-height: normal;
   list-style: none;
-  text-decoration: none;
+  text-decoration: none !important;
+  color: inherit !important;
 }
 
 a:hover {
@@ -67,23 +68,4 @@ select:focus {
     max-width: 100%;
     padding: 0 150px;
   }
-}
-
-/* button */
-nav.navbar .button {
-  font-weight: 500;
-  text-transform: uppercase;
-
-  padding: 10px 15px;
-
-  border-radius: 5px;
-  border: solid 2px #393d59;
-  box-shadow: 4px 4px #393d59;
-  transition: transform 50ms,
-    box-shadow 50ms;
-}
-
-nav.navbar .button:hover {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px #393d59;
 }

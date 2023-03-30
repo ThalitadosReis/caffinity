@@ -1,12 +1,19 @@
-import NavBar from "./components/NavBar";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import NavBar from "./components/NavBar";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   return (
-    <div>
+    <>
       <NavBar />
-      {/* <h1>Caffinity</h1> */}
-    </div>
+
+      <Routes>
+        <Route exact path="/register" element={<Register />} />
+        <Route exact path="/login" element={<Login />} />
+      </Routes>
+    </>
   );
 }
 

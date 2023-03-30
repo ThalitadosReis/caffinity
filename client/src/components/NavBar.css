@@ -1,20 +1,15 @@
 nav.navbar {
+    background-color: #f4f4f0;
     position: fixed;
+    padding: 15px;
     width: 100%;
     top: 0;
     z-index: 9999;
     transition: 0.32s ease-in-out;
-    padding: 25px;
-    border-bottom: .5px solid #000;
 }
 
 nav.navbar img {
     width: 35px;
-}
-
-nav.navbar {
-    background: transparent;
-    backdrop-filter: blur(10px);
 }
 
 nav.navbar .navbar-nav .nav-link.navbar-link {
@@ -80,4 +75,19 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     border-color: transparent;
+}
+
+/* button */
+nav.navbar .button {
+    padding: 5px 10px;
+
+    border-radius: 5px;
+    border: solid 1px #393d59;
+    box-shadow: 3.5px 3.5px #393d59;
+    transition: transform 50ms, box-shadow 50ms;
+}
+
+nav.navbar .button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px #393d59;
 }
