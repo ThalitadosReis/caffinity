@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -18,6 +19,12 @@ export default function Login() {
         <button className="btn btn-secondary" type="submit">
           Login
         </button>
+
+        <br />
+        <Link to="/register">
+          New to Caffinity?
+          <span> Register</span>
+        </Link>
       </form>
     </div>
   );

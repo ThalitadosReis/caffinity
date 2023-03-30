@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Register() {
@@ -27,6 +27,7 @@ export default function Register() {
   return (
     <div className="container my-5 p-5">
       <h2>Register Page</h2>
+
       <form onSubmit={handleSubmit}>
         <input
           className="form-control my-2"
@@ -52,6 +53,12 @@ export default function Register() {
         <button className="btn btn-secondary" type="submit">
           Register
         </button>
+
+        <br />
+        <Link to="/login">
+          Already have an account?
+          <span> Login</span>
+        </Link>
       </form>
     </div>
   );
