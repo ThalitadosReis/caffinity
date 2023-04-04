@@ -73,7 +73,7 @@ select:focus {
   border-radius: 30px;
   margin: 150px auto;
   display: flex;
-  background-color: #f8f8f8;
+  background-color: #f4f4f0;
 }
 
 .simple-grid__cell {
@@ -96,4 +96,31 @@ select:focus {
 
 .simple-grid__cell--1\/4 {
   flex: 0 0 25%;
+}
+
+/* homepage */
+.roast-grid {
+  margin: 100px auto;
+  column-count: 4;
+  column-gap: .5rem;
+}
+
+.full-background {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: #000;
+  font-weight: 700;
+  border-radius: 30px;
+  height: 10vh;
+
+  /* background image */
+  background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80') center center / cover no-repeat;
+  opacity: 0.5;
+}
+
+.full-background:hover {
+  opacity: 1;
 }
