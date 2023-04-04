@@ -66,3 +66,34 @@ select:focus {
     padding: 0 150px;
   }
 }
+
+/* register card */
+.simple-grid {
+  width: 60%;
+  border-radius: 30px;
+  margin: 150px auto;
+  display: flex;
+  background-color: #f8f8f8;
+}
+
+.simple-grid__cell {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.simple-grid__cell--fill {
+  flex: 1;
+}
+
+/* Cell with given width */
+.simple-grid__cell--1\/2 {
+  flex: 0 0 50%;
+}
+
+.simple-grid__cell--1\/3 {
+  flex: 0 0 33.3333333%;
+}
+
+.simple-grid__cell--1\/4 {
+  flex: 0 0 25%;
+}
