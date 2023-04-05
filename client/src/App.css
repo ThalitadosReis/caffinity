@@ -65,12 +65,16 @@ select:focus {
   }
 }
 
-/* register card */
+/* 
+  Simple Grid
+  Register, Login 
+*/
+
 .simple-grid {
+  display: flex;
   width: 60%;
   border-radius: 30px;
   margin: 150px auto;
-  display: flex;
   background-color: #f4f4f0;
 }
 
