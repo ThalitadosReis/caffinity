@@ -11,27 +11,28 @@ export default function Login() {
         />
       </div>
       <div className="simple-grid__cell simple-grid__cell--1/3 my-auto">
-        <h2>Login</h2>
-        <form>
+        <h4>Login to Caffinity</h4>
+        <form className="text-center">
           <input
-            className="form-control my-2"
+            className="form-control mb-2"
             placeholder="Username"
             type="text"
           />
           <input
-            className="form-control my-2"
+            className="form-control mb-2"
             placeholder="Password"
             type="password"
           />
-          <button className="btn btn-secondary mb-2" type="submit">
+          <button className="btn btn-dark px-4 mb-2" type="submit">
             Login
           </button>
 
-          <br />
-          <Link to="/register">
+          <p>
             New to Caffinity?
-            <span> Register</span>
-          </Link>
+            <Link to="/register">
+              <span className="text-primary"> Register!</span>
+            </Link>
+          </p>
         </form>
       </div>
     </div>

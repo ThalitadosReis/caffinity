@@ -33,38 +33,39 @@ export default function Register() {
         />
       </div>
       <div className="simple-grid__cell simple-grid__cell--1/3 my-auto">
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
+        <h4>Register to Caffinity</h4>
+        <form onSubmit={handleSubmit} className="text-center">
           <input
-            className="form-control my-2"
+            className="form-control mb-2"
             placeholder="Username"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
           <input
-            className="form-control my-2"
+            className="form-control mb-2"
             placeholder="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className="form-control my-2"
+            className="form-control mb-2"
             placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button className="btn btn-secondary mb-2" type="submit">
+          <button className="btn btn-dark px-4 mb-2" type="submit">
             Register
           </button>
 
-          <br />
-          <Link to="/login">
+          <p>
             Already have an account?
-            <span> Login</span>
-          </Link>
+            <Link to="/login">
+              <span className="text-primary"> Login!</span>
+            </Link>
+          </p>
         </form>
       </div>
     </div>

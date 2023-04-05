@@ -12,7 +12,6 @@ html {
 body {
   overflow-x: hidden;
   position: relative;
-  /* background-color: #f4f4f0 !important; */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -30,7 +29,6 @@ h6 {
 p,
 a,
 li,
-button,
 ul {
   margin: 0;
   padding: 0;
@@ -112,12 +110,13 @@ select:focus {
   justify-content: center;
 
   color: #000;
+  font-size: x-large;
   font-weight: 700;
   border-radius: 30px;
   height: 10vh;
 
   /* background image */
-  background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1738&q=80') center center / cover no-repeat;
+  background: url('https://images.unsplash.com/photo-1455813870877-04a32045af63?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=910&q=80') center center / cover no-repeat;
   opacity: 0.5;
 }
 
