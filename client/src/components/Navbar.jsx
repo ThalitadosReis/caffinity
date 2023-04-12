@@ -18,6 +18,9 @@ export default function NavBar() {
         </Navbar.Toggle>
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
+            <Link className="btn" to="/">
+              Cart
+            </Link>
             <Link className="btn" to="/login">
               Login
             </Link>
